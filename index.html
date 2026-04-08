@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotografía Interactiva</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="sources/icons/favicon.svg" type="image/x-icon">
+</head>
+<body>
+
+    <!-- =========================================
+         HTML: ESTRUCTURA DE PANTALLAS
+         ========================================= -->
+
+    <!-- Header (Visible en pantallas 2, 3, 4, 5) -->
+    <header id="main-header" class="header" style="display: none;">
+        <img src="sources/icons/logoCliente-white.svg" alt="logo del cliente">
+    </header>
+
+    <!-- PANTALLA 1: Login -->
+    <section id="screen-1" class="screen active main">
+            <div class="container-logo">
+                <div class="logo-placeholder">
+                    <img src="sources/icons/logoCliente.svg" alt="logo del cliente">    
+                </div>
+                <h1>Bienvenido</h1>
+                <p>Ingresa los siguientes datos para continuar</p>
+            </div>
+            
+            <div class="input-group" style="display: none;">
+                <label for="fullname" class="bold">Nombre y Apellido</label>
+                <div class="relative">
+                    <img src="sources/icons/user.svg" alt="user"></img>
+                    <input type="text" id="fullname" placeholder="Ej. Juan Pérez" required>
+                </div>
+                <div id="error-name" class="error-message">Por favor ingresa tu nombre completo.</div>
+                
+            </div>
+
+            <div class="input-group">
+                <label for="email" class="bold">Correo Electrónico</label>
+                <div class="relative">
+                    <img src="sources/icons/email.svg" alt="user"></img>
+                <input type="email" id="email" placeholder="usuario@pichincha.com" required>
+                </div>
+                <div id="error-email" class="error-message">Ingresa un correo electrónico válido.</div>
+            </div>
+
+            <button class="btn" onclick="app.handleLogin()" style="padding: 4%; max-width: 100%;">Entrar</button>
+    </section>
+
+    <!-- PANTALLA 2: Decisión de fotografía -->
+    <section id="screen-2" class="screen">
+        
+        <h2 style="margin-bottom: 6%;">Tómate una foto o selecciona de tu galería</h2>
+        <p>Presiona el botón <span style="color: var(--colorB-primary);">"Cámara"</span> si deseas tomarte una foto o el botón <span style="color: var(--colorB-primary);">"Galería"</span> si vas a seleccionar una foto desde tu dispositivo</p>
+        
+        <!-- Imagen de relleno temporal (gris circular) -->
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23bbb8c4' width='100' height='100'/><circle cx='50' cy='40' r='20' fill='%2364748b'/><path d='M20 90 Q50 60 80 90' stroke='%2364748b' stroke-width='8' fill='none'/></svg>" 
+             alt="Perfil" class="rounded-img-placeholder">
+
+        <button class="btn" onclick="app.navigate('screen-3a')" >Cámara</button>
+        <button class="btn btn-secondary" onclick="app.navigate('screen-3c')">Galería / Cargar foto</button>
+    </section>
+
+    <!-- PANTALLA 3A: Tomar foto -->
+    <section id="screen-3a" class="screen">
+        <h2>Captura tu mejor ángulo</h2>
+        <div class="ratio-1-1">
+            <video id="video-element" autoplay playsinline></video>
+        </div>
+        <button class="btn" onclick="app.takePhoto()">Tomar foto</button>
+        <button class="btn btn-secondary" onclick="app.navigate('screen-2')">Regresar</button>
+    </section>
+
+    <!-- PANTALLA 3B/3C: Cargar foto (Unificada para Mobile/Desktop) -->
+    <section id="screen-3c" class="screen">
+        <p>Carga una fotografía desde tu dispositivo presionando el botón <span style="color: var(--colorB-primary);">"Seleccionar foto"</span> o arrástrala sobre el recuadro. Recuerda que solo puedes cargar un archivo jpg o png.</p>
+        
+        <div class="upload-area" onclick="document.getElementById('file-upload').click()">
+            <svg style="width:50px;height:50px;color:var(--color-text-muted)" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+            <p style="margin-top: 1rem; color: var(--color-text-muted);">Haz clic para subir imagen</p>
+        </div>
+        
+        <input type="file" id="file-upload" class="hidden-input" accept="image/png, image/jpeg" onchange="app.handleFileUpload(event)">
+        
+        <button class="btn" onclick="document.getElementById('file-upload').click()">Seleccionar foto</button>
+        <button class="btn btn-secondary" onclick="app.navigate('screen-2')">Regresar</button>
+    </section>
+
+    <!-- PANTALLA 4: Selección de Marco -->
+    <section id="screen-4" class="screen">
+        <p class="align-left">Seleccionar un marco:</p>
+        
+        <div class="ratio-1-1 preview-container">
+            <!-- La foto original -->
+            <img id="preview-photo" class="preview-image" src="" alt="Tu foto">
+            <!-- El marco superpuesto -->
+            <img id="preview-frame" class="frame-overlay" src="" alt="Marco">
+        </div>
+
+        <p class="align-left bold">Marcos</p>
+        
+        <div class="frames-grid" id="frames-container">
+            <!-- Los marcos se renderizan desde JS -->
+        </div>
+
+        <button class="btn" onclick="app.processFinalImage()">Seleccionar</button>
+        <button class="btn btn-secondary" onclick="app.navigateBackFromFrame()">Regresar</button>
+    </section>
+
+    <!-- PANTALLA 5: Resultado -->
+    <section id="screen-5" class="screen">
+        <h2>Resultado</h2>
+        
+        <div class="ratio-1-1 preview-container">
+            <!-- Imagen final combinada (Foto + Marco) -->
+            <img id="final-result-image" class="preview-image" src="" alt="Resultado Final">
+        </div>
+
+        <button class="btn" onclick="app.downloadResult()">Descargar</button>
+        <button class="btn btn-secondary" onclick="app.navigate('screen-4')">Regresar</button>
+    </section>
+
+    <!-- PANTALLA 6: Final-cierre -->
+    <section id="screen-6" class="screen">
+        <div class="success-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M5 13l4 4L19 7"></path>
+            </svg>
+        </div>
+        <p class="bold" style="font-size: 1.2rem;">Descarga completa</p>
+        
+        <button class="btn final" onclick="app.navigate('screen-2')" style="position: fixed; bottom: calc(10% + 48px);">Volver al inicio</button>
+        <button class="btn btn-secondary cerrar final" onclick="app.navigate('screen-1')" style="position: fixed; bottom: 8%">Cerrar</button>
+    </section>
+    <script src="codigo.js"></script>
+</body>
+</html>

@@ -320,28 +320,28 @@
             // Esta URL se obtiene después de desplegar el script de Google Apps Script como aplicación web.
             GOOGLE_SHEETS_WEBHOOK_URL: 'https://script.google.com/macros/s/AKfycbzGF-7cfzeTOJTlE_i8PfQUcRHnk3fAb0rKdUDK3RqxBGIixDPi1xFoVjPGBPLAHzJL/exec',
 
-            secuencia : "6Uv-Gu1l3r-6uEr3245", // Este token debe coincidir en el Apps Script
+            //secuencia : "6Uv-Gu1l3r-6uEr3245", // Este token debe coincidir en el Apps Script
 
             // Función para enviar datos al Webhook de Google Sheets
             sendToGoogleSheets: function(record) {
                 // Agregamos el token al objeto de datos antes de enviarlo
                 const payload = { ...record, token: this.secuencia };
 
-                fetch(this.GOOGLE_SHEETS_WEBHOOK_URL, {
-                    method: 'POST',
-                    mode: 'no-cors', // Importante para evitar problemas de CORS con Google Apps Script
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(payload),
-                })
-                .then(() => {
-                    // En modo 'no-cors', la respuesta no es legible, pero la solicitud se envió.
-                    console.log('Datos de usuario enviados al Webhook de Google Sheets.');
-                })
-                .catch(error => {
-                    console.error('Error al enviar datos al Webhook de Google Sheets:', error);
-                    // Considera un mecanismo de reintento o notificación si esto es crítico.
-                });
+                // fetch(this.GOOGLE_SHEETS_WEBHOOK_URL, {
+                //     method: 'POST',
+                //     mode: 'no-cors', // Importante para evitar problemas de CORS con Google Apps Script
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //     },
+                //     body: JSON.stringify(payload),
+                // })
+                // .then(() => {
+                //     // En modo 'no-cors', la respuesta no es legible, pero la solicitud se envió.
+                //     console.log('Datos de usuario enviados al Webhook de Google Sheets.');
+                // })
+                // .catch(error => {
+                //     console.error('Error al enviar datos al Webhook de Google Sheets:', error);
+                //     // Considera un mecanismo de reintento o notificación si esto es crítico.
+                // });
             }
         };

@@ -42,6 +42,12 @@
             font-style: normal;
         }
         @font-face {
+            font-family: 'regular_italicBP';
+            src: url('sources/fonts/PichinchaSans-RegularItalic.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
             font-family: 'boldBP';
             src: url('sources/fonts/PichinchaSans-Bold.otf') format('opentype');
             font-weight: normal;
@@ -291,7 +297,7 @@
         /* Pantalla 2: Decisión */
         .rounded-img-placeholder {
             /* width: 90%; */
-            height: 40%;
+            height: 36%;
             border-radius: 8px;
             background-color: var(--color-secondary-light);
             margin: 6% 0;
@@ -424,7 +430,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1rem;
+            /* margin-bottom: 1rem; */
         }
         
         .success-icon svg {
@@ -441,6 +447,21 @@
             margin-top: 1.5rem;
         }
 
+        #screen-6 {
+           gap: 1rem;
+        }
+
+        #screen-6 div:nth-of-type(2) {
+            display: flex;
+            flex-direction: column;
+            gap: 10%;
+            margin: 10% 0;;
+        }
+
+        #screen-6 div:last-of-type p {
+            font-size: 0.9rem;
+        }
+
 /* =========================================
     MEDIA QUERIES (RESPONSIVE DESIGN)
     ========================================= */ 
@@ -455,6 +476,19 @@
 @media (min-width: 1000px) {
     .screen {
         padding: 2%;
+    }
+}
+
+@media (max-width: 450px) {
+    #screen-2 h2 {
+        font-size: 160%;
+    }
+    #screen-2, #screen-5 {
+        padding: 2% 7%;
+    }
+
+    #screen-2 p:last-of-type {
+        margin-bottom: 2%;
     }
 }
 

@@ -53,13 +53,15 @@
     <!-- PANTALLA 2: Decisión de fotografía -->
     <section id="screen-2" class="screen">
         
-        <h2 style="margin-bottom: 6%;">Tómate una foto o selecciona de tu galería</h2>
-        <p>Presiona el botón <span style="color: var(--colorB-primary);">"Cámara"</span> si deseas tomarte una foto o el botón <span style="color: var(--colorB-primary);">"Galería"</span> si vas a seleccionar una foto desde tu dispositivo</p>
+        <h2 style="margin-bottom: 6%;">Tu nueva foto de perfil!</h2>
+        <p>Sube una foto personal, como la que usarás en <span style="color: var(--colorB-primary);">LinkedIn o Workvivo,</span> mostrando el <span style="color: var(--colorB-primary);">PIN que te entregamos hoy</span></p>
         
         <!-- Imagen de relleno temporal (gris circular) -->
         <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23bbb8c4' width='100' height='100'/><circle cx='50' cy='40' r='20' fill='%2364748b'/><path d='M20 90 Q50 60 80 90' stroke='%2364748b' stroke-width='8' fill='none'/></svg>" 
-             alt="Perfil" class="rounded-img-placeholder">
+        alt="Perfil" class="rounded-img-placeholder">
 
+        <p style="font-family: regular_italicBP; font-size: small;"> <strong style="color: var(--colorB-primary); font-family: regular_italicBP;">Recuerda:</strong> foto de frente, fondo sencillo y PIN visible.</span></p>
+        
         <button class="btn" onclick="app.navigate('screen-3a')" >Cámara</button>
         <button class="btn btn-secondary" onclick="app.navigate('screen-3c')">Galería / Cargar foto</button>
     </section>
@@ -112,7 +114,8 @@
 
     <!-- PANTALLA 5: Resultado -->
     <section id="screen-5" class="screen">
-        <h2>Resultado</h2>
+        <h2 style="margin-bottom: 4%;">Tu foto de perfil está lista</h2>
+        <p style="margin-bottom: 4%;">Puedes usar esta imagen en LinkedIn, Workvivo u otras plataformas.</p>
         
         <div class="ratio-1-1 preview-container">
             <!-- Imagen final combinada (Foto + Marco) -->
@@ -131,6 +134,14 @@
             </svg>
         </div>
         <p class="bold" style="font-size: 1.2rem;">Descarga completa</p>
+        <div>
+            <p>Recuerda subir tu foto en redes y participa por premios,</p>
+            <p>Utiliza los hashtag:</p>
+            <div>
+                <p><strong>#YoSoyPichincha</strong></p>
+                <p><strong>#120añoscompartiendoconfianza</strong></p>
+            </div>
+        </div>
         
         <button class="btn final" onclick="app.navigate('screen-2')" style="position: fixed; bottom: calc(10% + 48px);">Volver al inicio</button>
         <button class="btn btn-secondary cerrar final" onclick="app.navigate('screen-1')" style="position: fixed; bottom: 8%">Cerrar</button>

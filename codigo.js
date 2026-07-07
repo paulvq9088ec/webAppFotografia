@@ -30,9 +30,9 @@
             // CONFIGURACIÓN DE MARCOS
             // NOTA: Reemplaza estos SVG base64 por las rutas a tus imágenes PNG (ej: '../img/marco1.png')
             frames: [
-                "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect x='10' y='10' width='380' height='380' fill='none' stroke='%23FFDD00' stroke-width='20'/></svg>",
-                "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect x='20' y='20' width='360' height='360' fill='none' stroke='%230F265C' stroke-width='15' stroke-dasharray='30,10'/></svg>",
-                "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect x='0' y='0' width='400' height='400' fill='none' stroke='%2310b981' stroke-width='30'/><circle cx='40' cy='40' r='20' fill='%2310b981'/><circle cx='360' cy='360' r='20' fill='%2310b981'/></svg>"
+                "sources/imgs/marco_1.png",
+                "sources/imgs/marco_2.png",
+                "sources/imgs/marco_3.png"
             ],
 
            
@@ -103,24 +103,14 @@
                 }
             },
 
-            // 2. LÓGICA DE LOGIN Y GUARDADO DE USUARIO
+            // 2. LÓGICA DE LOGIN
             handleLogin: function() {
-                
-                // const nameInput = document.getElementById('fullname').value.trim();
                 const emailInput = document.getElementById('email').value.trim();
-                
-                // const errName = document.getElementById('error-name');
                 const errEmail = document.getElementById('error-email');
-                
-                // errName.style.display = 'none';
+
                 errEmail.style.display = 'none';
 
                 let isValid = true;
-
-                // if (!nameInput) {
-                //     errName.style.display = 'block';
-                //     isValid = false;
-                // }
 
                 if (!emailInput || !emailInput.endsWith('@pichincha.com')) {
                     errEmail.style.display = 'block';
@@ -128,25 +118,8 @@
                 }
 
                 if (isValid) {
-                    // Guardar registro de usuario simulado en localStorage 
-                    // (Esto permite luego generar el txt si un administrador lo desea)
-                    //this.saveUserRecord(nameInput, emailInput); // Si quieres guardar el email también, descomenta esta línea y ajusta la función saveUserRecord
-                    // this.saveUserRecord(nameInput);
-                    this.saveUserRecord(emailInput); 
                     this.navigate('screen-2', false);
                 }
-            },
-
-            //saveUserRecord: function(name, email) { //si deseas guardar el email, ajusta esta función para recibirlo como parámetro
-            saveUserRecord: function(email) {
-                const record = { email: email, date: new Date().toISOString() };
-                let users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
-                //users.push({ name: name, email: email, date: new Date().toISOString() }); // Si decides guardar el email, usa esta línea
-                users.push(record);
-                localStorage.setItem('registeredUsers', JSON.stringify(users));
-                
-                // Enviar también a Google Sheets
-                this.sendToGoogleSheets(record);
             },
 
             // 3. LÓGICA DE CÁMARA (Pantalla 3A)
@@ -314,34 +287,5 @@
 
                 // Tras la descarga, ir a pantalla 6
                 this.navigate('screen-6');
-            },
-
-            // URL del Webhook de Google Apps Script (¡REEMPLAZA ESTO CON TU URL REAL!)
-            // Esta URL se obtiene después de desplegar el script de Google Apps Script como aplicación web.
-            GOOGLE_SHEETS_WEBHOOK_URL: 'https://script.google.com/macros/s/AKfycbzGF-7cfzeTOJTlE_i8PfQUcRHnk3fAb0rKdUDK3RqxBGIixDPi1xFoVjPGBPLAHzJL/exec',
-
-            //secuencia : "6Uv-Gu1l3r-6uEr3245", // Este token debe coincidir en el Apps Script
-
-            // Función para enviar datos al Webhook de Google Sheets
-            sendToGoogleSheets: function(record) {
-                // Agregamos el token al objeto de datos antes de enviarlo
-                const payload = { ...record, token: this.secuencia };
-
-                // fetch(this.GOOGLE_SHEETS_WEBHOOK_URL, {
-                //     method: 'POST',
-                //     mode: 'no-cors', // Importante para evitar problemas de CORS con Google Apps Script
-                //     headers: {
-                //         'Content-Type': 'application/json',
-                //     },
-                //     body: JSON.stringify(payload),
-                // })
-                // .then(() => {
-                //     // En modo 'no-cors', la respuesta no es legible, pero la solicitud se envió.
-                //     console.log('Datos de usuario enviados al Webhook de Google Sheets.');
-                // })
-                // .catch(error => {
-                //     console.error('Error al enviar datos al Webhook de Google Sheets:', error);
-                //     // Considera un mecanismo de reintento o notificación si esto es crítico.
-                // });
             }
         };

@@ -1,13 +1,14 @@
 /* =========================================
            VARIABLES Y CONFIGURACIÓN INICIAL (CSS)
            ========================================= */
-        :root {
-            --colorA-primary: #FFDD00;
-            --colorA-primary-dark: #FFCC00;
-            --colorA-primary-light: #FFEE00;
-            --colorB-primary: #0F265C;
-            --colorB-primary-dark: #10133F;
-            --colorB-primary-light: #033572;
+        
+           :root {
+            --colorA-primary: #3071e7;
+            --colorA-primary-dark: #1345A0;
+            --colorA-primary-light: #89B0F5;
+            --colorB-primary: #161e35;
+            --colorB-primary-dark: #070A12;
+            --colorB-primary-light: #34477E;
             --color-secondary: #2d2d38;
             --color-secondary-dark: #475569;
             --color-secondary-light: #f2f2f2;
@@ -28,50 +29,11 @@
             --color-secondary-button: #e2e2e2;
         }
 
-        /* Declaración de fuentes (Debes asegurarte de tener la carpeta 'fonts' en tu directorio raíz) */
-        @font-face {
-            font-family: 'slab_regularBP';
-            src: url('sources/fonts/PichinchaSlab-Regular.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'regularBP';
-            src: url('sources/fonts/PichinchaSans-Regular.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'regular_italicBP';
-            src: url('sources/fonts/PichinchaSans-RegularItalic.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'boldBP';
-            src: url('sources/fonts/PichinchaSans-Bold.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'slab_boldBP';
-            src: url('sources/fonts/PichinchaSlab-Bold.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        @font-face {
-                font-family: 'preloSemibold';
-                src: url('sources/fonts/') format('opentype');
-                font-weight: normal;
-            font-style: normal;
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'regularBP', sans-serif;
+            font-family: 'Nunito Sans', sans-serif;
         }
 
         body {
@@ -87,9 +49,10 @@
         }
 
         h1, h2, h3, h4, .bold {
-            font-family: 'boldBP', sans-serif;
+            font-family: 'Nunito Sans', sans-serif;
             color: var(--colorB-primary);
         }
+        
 
         /* =========================================
            COMPONENTES COMUNES
@@ -125,7 +88,7 @@
 
         .logo-placeholder {
             color: var(--color-text-inverse);
-            font-family: 'boldBP', sans-serif;
+            font-family: 'Nunito Sans', sans-serif;
             font-size: 1.5rem;
             letter-spacing: 1px;
         }
@@ -152,12 +115,12 @@
 
         .btn {
             background-color: var(--colorA-primary);
-            color: var(--colorB-primary-dark);
+            color: var(--color-text-inverse);
             border: none;
             padding: 3%;
             border-radius: 4px;
             font-size: smaller;
-            font-family: "Work Sans", sans-serif;
+            font-family: "Nunito Sans", sans-serif;
             cursor: pointer;
             margin-top: 3%;
             width: 100%;
@@ -302,7 +265,7 @@
             background-color: var(--color-secondary-light);
             margin: 6% 0;
             object-fit: cover;
-            border: 4px solid var(--colorB-primary);
+            /* border: 4px solid var(--colorB-primary); */
             aspect-ratio: 1 / 1;
         }
 

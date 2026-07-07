@@ -15,14 +15,14 @@
 
     <!-- Header (Visible en pantallas 2, 3, 4, 5) -->
     <header id="main-header" class="header" style="display: none;">
-        <img src="sources/icons/logoCliente-white.svg" alt="logo del cliente">
+        <img src="sources/imgs/logo.jpg" alt="logo del cliente">
     </header>
 
     <!-- PANTALLA 1: Login -->
     <section id="screen-1" class="screen active main">
             <div class="container-logo">
                 <div class="logo-placeholder">
-                    <img src="sources/icons/logoCliente.svg" alt="logo del cliente">    
+                    <img src="sources/imgs/logo.jpg" alt="logo del cliente">    
                 </div>
                 <h1>Bienvenido</h1>
                 <p>Ingresa los siguientes datos para continuar</p>
@@ -42,7 +42,7 @@
                 <label for="email" class="bold">Correo Electrónico</label>
                 <div class="relative">
                     <img src="sources/icons/email.svg" alt="user"></img>
-                <input type="email" id="email" placeholder="usuario@pichincha.com" required>
+                <input type="email" id="email" placeholder="usuario@correo.com" required>
                 </div>
                 <div id="error-email" class="error-message">Ingresa un correo electrónico válido.</div>
             </div>
@@ -57,10 +57,10 @@
         <p>Sube una foto personal, como la que usarás en <span style="color: var(--colorB-primary);">LinkedIn o Workvivo,</span> mostrando el <span style="color: var(--colorB-primary);">PIN que te entregamos hoy</span></p>
         
         <!-- Imagen de relleno temporal (gris circular) -->
-        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23bbb8c4' width='100' height='100'/><circle cx='50' cy='40' r='20' fill='%2364748b'/><path d='M20 90 Q50 60 80 90' stroke='%2364748b' stroke-width='8' fill='none'/></svg>" 
+        <img src="sources/imgs/foto_persona.avif" 
         alt="Perfil" class="rounded-img-placeholder">
 
-        <p style="font-family: regular_italicBP; font-size: small;"> <strong style="color: var(--colorB-primary); font-family: regular_italicBP;">Recuerda:</strong> foto de frente, fondo sencillo y PIN visible.</span></p>
+        <p style="font-family: Nunito Sans; font-size: small;"> <strong style="color: var(--colorB-primary); font-family: regular_italicBP;">Recuerda:</strong> foto de frente, fondo sencillo y PIN visible.</span></p>
         
         <button class="btn" onclick="app.navigate('screen-3a')" >Cámara</button>
         <button class="btn btn-secondary" onclick="app.navigate('screen-3c')">Galería / Cargar foto</button>

@@ -39,7 +39,7 @@
     @apply flex h-[calc(100dvh-60px)];
   }
   .btn {
-    @apply bg-brand-a-primary text-white border-none p-[3%] rounded-[4px] text-sm font-semibold cursor-pointer mt-[3%] w-full max-w-[300px] transition-colors duration-300 uppercase h-[48px] flex items-center justify-center;
+    @apply bg-brand-a-primary text-white border-none rounded-[4px] text-sm font-semibold cursor-pointer mt-[3%] w-full max-w-[300px] transition-colors duration-300 uppercase h-[48px] flex items-center justify-center;
   }
   .btn:hover {
     @apply bg-brand-a-dark;

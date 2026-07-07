@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: 'Montserrat', sans-serif;
+  --font-sans: 'Nunito Sans', sans-serif;
+
+  --color-brand-a-primary: #3071e7;
+  --color-brand-a-dark: #1345A0;
+  --color-brand-b-primary: #161e35;
+  --color-brand-input-bg: #eeeeee;
+  --color-brand-secondary-btn: #e2e2e2;
+  --color-brand-secondary-btn-hover: #a09da8;
+  
+  --animate-slide-out-left: slideOutLeft 0.5s ease forwards;
+  --animate-slide-in-right: slideInRight 0.7s ease forwards;
+  --animate-slide-out-right: slideOutRight 0.5s ease forwards;
+  --animate-slide-in-left: slideInLeft 0.7s ease forwards;
+}
+
+@keyframes slideOutLeft { to { transform: translateX(-50px); opacity: 0; } }
+@keyframes slideInRight { from { transform: translateX(50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes slideOutRight { to { transform: translateX(50px); opacity: 0; } }
+@keyframes slideInLeft { from { transform: translateX(-50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+@layer base {
+  body {
+    @apply bg-[#f2f2f2] font-sans antialiased h-[100dvh] overflow-hidden grid grid-rows-[auto_1fr] items-center justify-items-center px-[4%];
+  }
+  h1, h2, h3, h4 {
+    @apply font-heading text-brand-b-primary;
+  }
+}
+
+@layer components {
+  .screen {
+    @apply hidden row-start-2 col-start-1 px-[4%] py-[2%] max-w-[600px] mx-auto w-full flex-col items-center justify-center text-center;
+  }
+  .screen.active {
+    @apply flex h-[calc(100dvh-60px)];
+  }
+  .btn {
+    @apply bg-brand-a-primary text-white border-none p-[3%] rounded-[4px] text-sm font-semibold cursor-pointer mt-[3%] w-full max-w-[300px] transition-colors duration-300 uppercase h-[48px] flex items-center justify-center;
+  }
+  .btn:hover {
+    @apply bg-brand-a-dark;
+  }
+  .btn-secondary {
+    @apply bg-brand-secondary-btn text-[#1e293b];
+  }
+  .btn-secondary:hover {
+    @apply bg-brand-secondary-btn-hover;
+  }
+}

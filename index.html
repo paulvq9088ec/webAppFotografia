@@ -4,148 +4,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fotografía Interactiva</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" href="sources/icons/favicon.svg" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./src/styles.css">
+    <link rel="shortcut icon" href="src/imgs/logo.jpg" type="image/x-icon">
 </head>
 <body>
 
-    <!-- =========================================
-         HTML: ESTRUCTURA DE PANTALLAS
-         ========================================= -->
-
-    <!-- Header (Visible en pantallas 2, 3, 4, 5) -->
-    <header id="main-header" class="header" style="display: none;">
-        <img src="sources/imgs/logo.jpg" alt="logo del cliente">
+    <header id="main-header" class="bg-[#f0f0f0] px-8 py-4 hidden justify-start items-center h-[60px] w-full shadow-[0_5px_16px_rgba(0,16,59,0.4)] row-start-1 col-start-1 z-20">
+        <img src="src/imgs/logo.jpg" alt="logo del cliente" class="h-full">
     </header>
 
-    <!-- PANTALLA 1: Login -->
-    <section id="screen-1" class="screen active main">
-            <div class="container-logo">
-                <div class="logo-placeholder">
-                    <img src="sources/imgs/logo.jpg" alt="logo del cliente">    
+    <section id="screen-1" class="screen active shadow-[0_9px_25px_rgba(0,0,0,0.2)] bg-[#f9f9f9] rounded-rem overflow-hidden max-w-[26rem] w-full box-border max-h-[440px]">
+            <div class="flex flex-col items-center mb-[14%] gap-[1%]">
+                <div class="text-brand-b-primary mb-[16%] h-[35px] w-full">
+                    <img src="src/imgs/logo.jpg" alt="logo del cliente" class="w-full h-full">    
                 </div>
-                <h1>Bienvenido</h1>
-                <p>Ingresa los siguientes datos para continuar</p>
+                <h1 class="text-[1.35rem] style-semibold line-height-[2rem] mb-2">Bienvenido</h1>
+                <p class="text-sm text-[#475569]">Ingresa los siguientes datos para continuar</p>
             </div>
             
-            <div class="input-group" style="display: none;">
-                <label for="fullname" class="bold">Nombre y Apellido</label>
-                <div class="relative">
-                    <img src="sources/icons/user.svg" alt="user"></img>
-                    <input type="text" id="fullname" placeholder="Ej. Juan Pérez" required>
+            <div class="input-group hidden w-full mb-[12%] text-left">
+                <label for="fullname" class="uppercase text-[0.75rem] tracking-[0.1em] text-[#475569] font-bold">Nombre y Apellido</label>
+                <div class="relative bg-brand-input-bg flex items-center px-[4%] rounded-lg my-[2%] transition-all duration-200">
+                    <img src="src/icons/user.svg" alt="user" class="w-4 h-4">
+                    <input type="text" id="fullname" placeholder="Ej. Juan Pérez" class="w-full p-[5%] border-none bg-transparent text-base text-[#1e293b] focus:outline-none" required>
                 </div>
-                <div id="error-name" class="error-message">Por favor ingresa tu nombre completo.</div>
-                
+                <div id="error-name" class="text-[#ef4444] text-[0.85rem] mt-1 hidden">Por favor ingresa tu nombre completo.</div>
             </div>
 
-            <div class="input-group">
-                <label for="email" class="bold">Correo Electrónico</label>
-                <div class="relative">
-                    <img src="sources/icons/email.svg" alt="user"></img>
-                <input type="email" id="email" placeholder="usuario@correo.com" required>
+            <div class="w-full mb-[12%] text-left">
+                <label for="email" class="uppercase text-[0.75rem] tracking-[0.1em] text-[#475569] font-bold">Correo Electrónico</label>
+                <div class="relative bg-brand-input-bg flex items-center px-[4%] rounded-lg my-[2%] transition-all duration-200">
+                    <img src="src/icons/email.svg" alt="user" class="w-4 h-4">
+                    <input type="email" id="email" placeholder="usuario@correo.com" class="w-full p-[5%] border-none bg-transparent text-base text-[#1e293b] focus:outline-none" required>
                 </div>
-                <div id="error-email" class="error-message">Ingresa un correo electrónico válido.</div>
+                <div id="error-email" class="text-[#ef4444] text-[0.85rem] mt-1 hidden">Ingresa un correo electrónico válido.</div>
             </div>
 
-            <button class="btn" onclick="app.handleLogin()" style="padding: 4%; max-width: 100%;">Entrar</button>
+            <button class="btn !p-[4%] !max-w-full" onclick="app.handleLogin()">Entrar</button>
     </section>
 
-    <!-- PANTALLA 2: Decisión de fotografía -->
-    <section id="screen-2" class="screen">
+    <section id="screen-2" class="screen max-[450px]:px-[7%]">
+        <h2 class="text-3xl max-[450px]:text-[160%] mb-[6%] leading-none">Tu nueva foto de perfil!</h2>
+        <p class="text-[#64748b]">Sube una foto personal, como la que usarás en <span class="text-brand-b-primary font-bold">LinkedIn o Workvivo,</span> mostrando el <span class="text-brand-b-primary font-bold">PIN que te entregamos hoy</span></p>
         
-        <h2 style="margin-bottom: 6%;">Tu nueva foto de perfil!</h2>
-        <p>Sube una foto personal, como la que usarás en <span style="color: var(--colorB-primary);">LinkedIn o Workvivo,</span> mostrando el <span style="color: var(--colorB-primary);">PIN que te entregamos hoy</span></p>
-        
-        <!-- Imagen de relleno temporal (gris circular) -->
-        <img src="sources/imgs/foto_persona.avif" 
-        alt="Perfil" class="rounded-img-placeholder">
+        <img src="src/imgs/foto_persona.avif" alt="Perfil" class="h-[36%] rounded-lg my-[6%] object-cover aspect-square">
 
-        <p style="font-family: Nunito Sans; font-size: small;"> <strong style="color: var(--colorB-primary); font-family: regular_italicBP;">Recuerda:</strong> foto de frente, fondo sencillo y PIN visible.</span></p>
+        <p class="text-sm text-[#64748b] mb-[4%] max-[450px]:mb-[2%]"> <strong class="text-brand-b-primary">Recuerda:</strong> foto de frente, fondo sencillo y PIN visible.</p>
         
-        <button class="btn" onclick="app.navigate('screen-3a')" >Cámara</button>
+        <button class="btn" onclick="app.navigate('screen-3a')">Cámara</button>
         <button class="btn btn-secondary" onclick="app.navigate('screen-3c')">Galería / Cargar foto</button>
     </section>
 
-    <!-- PANTALLA 3A: Tomar foto -->
     <section id="screen-3a" class="screen">
-        <h2>Captura tu mejor ángulo</h2>
-        <div class="ratio-1-1">
-            <video id="video-element" autoplay playsinline></video>
+        <h2 class="text-2xl mb-4">Captura tu mejor ángulo</h2>
+        <div class="h-[48%] max-w-[400px] aspect-square bg-[#bbb8c4] rounded-lg overflow-hidden relative my-[4%] flex items-center justify-center">
+            <video id="video-element" autoplay playsinline class="w-full h-full object-cover"></video>
         </div>
         <button class="btn" onclick="app.takePhoto()">Tomar foto</button>
         <button class="btn btn-secondary" onclick="app.navigate('screen-2')">Regresar</button>
     </section>
 
-    <!-- PANTALLA 3B/3C: Cargar foto (Unificada para Mobile/Desktop) -->
     <section id="screen-3c" class="screen">
-        <p>Carga una fotografía desde tu dispositivo presionando el botón <span style="color: var(--colorB-primary);">"Seleccionar foto"</span> o arrástrala sobre el recuadro. Recuerda que solo puedes cargar un archivo jpg o png.</p>
+        <p class="text-[#64748b]">Carga una fotografía desde tu dispositivo presionando el botón <span class="text-brand-b-primary font-bold">"Seleccionar foto"</span> o arrástrala sobre el recuadro. Recuerda que solo puedes cargar un archivo jpg o png.</p>
         
-        <div class="upload-area" onclick="document.getElementById('file-upload').click()">
-            <svg style="width:50px;height:50px;color:var(--color-text-muted)" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
-            <p style="margin-top: 1rem; color: var(--color-text-muted);">Haz clic para subir imagen</p>
+        <div class="border-2 border-dashed border-[#94a3b8] rounded-lg p-8 my-6 bg-[#f2f2f2] cursor-pointer w-full max-w-[400px] mb-16 flex flex-col items-center" onclick="document.getElementById('file-upload').click()">
+            <svg class="w-12 h-12 text-[#94a3b8]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+            <p class="mt-4 text-[#94a3b8]">Haz clic para subir imagen</p>
         </div>
         
-        <input type="file" id="file-upload" class="hidden-input" accept="image/png, image/jpeg" onchange="app.handleFileUpload(event)">
+        <input type="file" id="file-upload" class="hidden" accept="image/png, image/jpeg" onchange="app.handleFileUpload(event)">
         
         <button class="btn" onclick="document.getElementById('file-upload').click()">Seleccionar foto</button>
         <button class="btn btn-secondary" onclick="app.navigate('screen-2')">Regresar</button>
     </section>
 
-    <!-- PANTALLA 4: Selección de Marco -->
     <section id="screen-4" class="screen">
-        <p class="align-left">Seleccionar un marco:</p>
+        <p class="text-left w-full max-w-[400px] text-[#64748b]">Seleccionar un marco:</p>
         
-        <div class="ratio-1-1 preview-container">
-            <!-- La foto original -->
-            <img id="preview-photo" class="preview-image" src="" alt="Tu foto">
-            <!-- El marco superpuesto -->
-            <img id="preview-frame" class="frame-overlay" src="" alt="Marco">
+        <div class="h-[48%] max-w-[400px] aspect-square bg-[#bbb8c4] rounded-lg overflow-hidden relative my-[4%] flex items-center justify-center">
+            <img id="preview-photo" class="absolute top-0 left-0 w-full h-full object-cover pointer-events-none" src="" alt="Tu foto">
+            <img id="preview-frame" class="absolute top-0 left-0 w-full h-full object-contain pointer-events-none" src="" alt="Marco">
         </div>
 
-        <p class="align-left bold">Marcos</p>
+        <p class="text-left w-full max-w-[400px] font-bold text-brand-b-primary">Marcos</p>
         
-        <div class="frames-grid" id="frames-container">
-            <!-- Los marcos se renderizan desde JS -->
-        </div>
+        <div class="flex gap-4 my-[2%] justify-center w-[90%] max-w-[400px]" id="frames-container">
+            </div>
 
         <button class="btn" onclick="app.processFinalImage()">Seleccionar</button>
         <button class="btn btn-secondary" onclick="app.navigateBackFromFrame()">Regresar</button>
     </section>
 
-    <!-- PANTALLA 5: Resultado -->
-    <section id="screen-5" class="screen">
-        <h2 style="margin-bottom: 4%;">Tu foto de perfil está lista</h2>
-        <p style="margin-bottom: 4%;">Puedes usar esta imagen en LinkedIn, Workvivo u otras plataformas.</p>
+    <section id="screen-5" class="screen max-[450px]:px-[7%]">
+        <h2 class="text-2xl mb-[4%]">Tu foto de perfil está lista</h2>
+        <p class="text-[#64748b] mb-[4%]">Puedes usar esta imagen en LinkedIn, Workvivo u otras plataformas.</p>
         
-        <div class="ratio-1-1 preview-container">
-            <!-- Imagen final combinada (Foto + Marco) -->
-            <img id="final-result-image" class="preview-image" src="" alt="Resultado Final">
+        <div class="h-[48%] max-w-[400px] aspect-square bg-[#bbb8c4] rounded-lg overflow-hidden relative my-[4%] flex items-center justify-center">
+            <img id="final-result-image" class="absolute top-0 left-0 w-full h-full object-cover pointer-events-none" src="" alt="Resultado Final">
         </div>
 
         <button class="btn" onclick="app.downloadResult()">Descargar</button>
         <button class="btn btn-secondary" onclick="app.navigate('screen-4')">Regresar</button>
     </section>
 
-    <!-- PANTALLA 6: Final-cierre -->
-    <section id="screen-6" class="screen">
-        <div class="success-icon">
-            <svg viewBox="0 0 24 24">
+    <section id="screen-6" class="screen gap-4">
+        <div class="w-20 h-20 bg-[#10b981] rounded-full flex items-center justify-center">
+            <svg class="w-10 h-10 fill-none stroke-white stroke-[4] stroke-linecap-round stroke-linejoin-round" viewBox="0 0 24 24">
                 <path d="M5 13l4 4L19 7"></path>
             </svg>
         </div>
-        <p class="bold" style="font-size: 1.2rem;">Descarga completa</p>
-        <div>
+        <p class="font-bold text-xl text-brand-b-primary">Descarga completa</p>
+        <div class="flex flex-col gap-[10%] my-[10%] text-[#64748b]">
             <p>Recuerda subir tu foto en redes y participa por premios,</p>
             <p>Utiliza los hashtag:</p>
-            <div>
+            <div class="text-[#1e293b] mt-2">
                 <p><strong>#YoSoyPichincha</strong></p>
                 <p><strong>#120añoscompartiendoconfianza</strong></p>
             </div>
         </div>
         
-        <button class="btn final" onclick="app.navigate('screen-2')" style="position: fixed; bottom: calc(10% + 48px);">Volver al inicio</button>
-        <button class="btn btn-secondary cerrar final" onclick="app.navigate('screen-1')" style="position: fixed; bottom: 8%">Cerrar</button>
+        <button class="btn max-[700px]:p-4 fixed bottom-[calc(10%+48px)]" onclick="app.navigate('screen-2')">Volver al inicio</button>
+        <button class="btn btn-secondary cerrar fixed bottom-[8%]" onclick="app.navigate('screen-1')">Cerrar</button>
     </section>
+
     <script src="codigo.js"></script>
 </body>
 </html>
